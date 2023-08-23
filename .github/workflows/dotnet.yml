@@ -11,7 +11,13 @@ jobs:
   build:
   
     runs-on: ubuntu-latest
+    env: 
+      working-directory: ./PlanZen-Backend
 
+    defaults:
+      run:
+        working-directory: ${{env.working-directory}}
+        
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
