@@ -10,10 +10,10 @@
         [MaxLength(50)]
         public string Title { get; set; }
 
-        public ICollection<Column> Columns { get; set;} = new List<Column>();
+        public ICollection<Column> Columns { get; set; } = new List<Column>();
 
         public Table(string title)
-        { 
+        {
             Title = title;
         }
     }
