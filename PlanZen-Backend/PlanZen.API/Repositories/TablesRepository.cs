@@ -14,5 +14,13 @@
                 .Include(t => t.Columns)
                 .ToListAsync();
         }
+        public Task<Table?> GetTableById(int tableId)
+        {
+            var table = _context.Tables
+                .Include(t => t.Columns)
+                .FirstOrDefaultAsync(t => t.Id == tableId);
+            return table;
+        }
+
     }
 }
