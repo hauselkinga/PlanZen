@@ -37,6 +37,23 @@
             return CreatedAtAction("GetTable", new { id = table.Id }, table);
         }
 
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<ActionResult<Table>> UpdateTableTitle(int id, Table table)
+        {
+            var tableToUpdate = await _tablesRepository.GetTableById(id);
+
+            if (tableToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            tableToUpdate.Title = table.Title;
+            _tablesRepository.UpdateTable(tableToUpdate);
+            await _tablesRepository.SaveAsync();
+            return Ok(tableToUpdate);
+        }
+
         [HttpDelete]
         [Route("{id}")]
         public async Task<ActionResult> DeleteTable(int id)

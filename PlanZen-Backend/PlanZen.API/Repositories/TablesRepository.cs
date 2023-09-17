@@ -32,6 +32,11 @@
             return _context.SaveChangesAsync();
         }
 
+        public void UpdateTable(Table table)
+        {
+            _context.Entry(table).State = EntityState.Modified;
+        }
+
         public void DeleteTable(Table table)
         {
             _context.Tables.Remove(table);

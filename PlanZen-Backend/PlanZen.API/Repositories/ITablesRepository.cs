@@ -6,6 +6,7 @@
         public Task<Table?> GetTableById(int tableId);
         public Task AddTable(Table table);
         public Task SaveAsync();
+        public void UpdateTable(Table table);
         public void DeleteTable(Table table);
     }
 }
