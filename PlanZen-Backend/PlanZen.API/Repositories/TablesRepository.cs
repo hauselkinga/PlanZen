@@ -22,5 +22,14 @@
             return table;
         }
 
+        public async Task AddTable(Table table)
+        {
+            await _context.Tables.AddAsync(table);
+        }
+
+        public Task SaveAsync()
+        {
+            return _context.SaveChangesAsync();
+        }
     }
 }

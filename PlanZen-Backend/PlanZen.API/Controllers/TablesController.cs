@@ -16,8 +16,7 @@
             return Ok(await _tablesRepository.GetTables());
         }
 
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}", Name = "GetTable")]
         public async Task<ActionResult<Table>> GetTable(int id)
         {
             var table = await _tablesRepository.GetTableById(id);
@@ -28,6 +27,14 @@
             }
 
             return Ok(table);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Table>> CreateTable(Table table)
+        {
+            await _tablesRepository.AddTable(table);
+            await _tablesRepository.SaveAsync();
+            return CreatedAtAction("GetTable", new { id = table.Id }, table);
         }
     }
 }
