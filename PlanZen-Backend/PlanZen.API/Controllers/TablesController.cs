@@ -36,5 +36,21 @@
             await _tablesRepository.SaveAsync();
             return CreatedAtAction("GetTable", new { id = table.Id }, table);
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult> DeleteTable(int id)
+        {
+            var tableToDelete = await _tablesRepository.GetTableById(id);
+
+            if (tableToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _tablesRepository.DeleteTable(tableToDelete);
+            await _tablesRepository.SaveAsync();
+            return NoContent();
+        }
     }
 }

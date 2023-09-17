@@ -31,5 +31,10 @@
         {
             return _context.SaveChangesAsync();
         }
+
+        public void DeleteTable(Table table)
+        {
+            _context.Tables.Remove(table);
+        }
     }
 }
